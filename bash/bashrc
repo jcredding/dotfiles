@@ -1,0 +1,30 @@
+export PATH=/usr/local/bin:$PATH:/usr/local/sbin
+export EDITOR='subl -w'
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWUPSTREAM=true
+
+# Rubygems
+alias gemls='gem list --local'
+alias gemcu='gem cleanup'
+alias gemi='gem install'
+alias gemu='gem uninstall'
+
+# Bundler
+alias bx='bundle exec'
+
+# Assert
+alias assert='RUBY_HEAP_MIN_SLOTS=2000000 RUBY_HEAP_FREE_MIN=20000 RUBY_GC_MALLOC_LIMIT=100000000 RUBY_FREE_MIN=200000 bx assert'
+
+source /usr/local/etc/bash_completion.d/git-completion.bash
+source /usr/local/etc/bash_completion.d/git-prompt.sh
+source ~/.bin/gem-completion-kellyredding.sh
+source ~/.bin/grb-completion-kellyredding.sh
+
+function parse_current_ruby {
+  rb status | tr "-" " " | tr " " "\n" | head -1
+}
+
+export PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
+eval "$(rb init --auto --quiet)"
+
+export PS1="\[\033[G\]💀 [\$(parse_current_ruby):\w\$(__git_ps1)] "
