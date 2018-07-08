@@ -1,0 +1,34 @@
+[user]
+  name = <%= name %>
+  email = <%= email %>
+[core]
+  excludesfile = ~/.gitignore
+  editor = subl -w
+[push]
+  default = current
+[alias]
+  s = status --untracked-files=all
+  b = branch
+  ba = branch -a --color
+  k = checkout
+  a = add
+  rm = remove
+  c = commit
+  cm = commit -m
+  ps = push
+  pl = pull
+  rb = rebase
+  m = merge
+  d = diff --color
+  pr = remote prune origin
+  lg = log -p --color
+  cp = cherry-pick
+[github]
+  user = <%= github_user %>
+  token = <%= github_token %>
+[credential]
+  helper = osxkeychain
+[http]
+  sslVerify = false
+[color]
+  ui = true
